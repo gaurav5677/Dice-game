@@ -1,4 +1,6 @@
 // Selecting elements
+const player0EL = document.querySelector(".player--0");
+const player1EL = document.querySelector(".player--1");
 const score0L = document.querySelector("#score--0"); //Score0L element
 const score1 = document.getElementById("score--1");
 const current0EL = document.getElementById("current--0");
@@ -13,7 +15,10 @@ const btnHold = document.querySelector(".btn--hold");
 score0L.textContent = 0;
 score1.textContent = 0;
 diceEl.classList.add("hidden");
+
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 
 //////////////////////////////////////////////Rolling dice Functionality ///////////////////////////
 
@@ -29,8 +34,16 @@ btnRoll.addEventListener("click", function () {
   if (dice != 1) {
     // add dice to current score
     currentScore += dice;
-    current0EL.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
+
+    //  current0EL.textContent = currentScore;
   } else {
     // switch to the next player
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0EL.classList.toggle("player--active");
+    player1EL.classList.toggle("player--active");
   }
 });
