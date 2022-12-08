@@ -77,8 +77,8 @@ btnHold.addEventListener("click", function () {
         .querySelector(`.player--${activePlayer}`)
         .classList.add("player--active");
     } else {
+      // 3  switch to the next player
       switchPlayer();
     }
   }
-  // 3  switch to the next player
 });
